@@ -3,10 +3,10 @@ cmake_minimum_required(VERSION 2.8.3)
 project(timestamp_tools)
 
 # Load catkin and all dependencies required for this package
-find_package(catkin REQUIRED roslib roscpp)
+find_package(catkin REQUIRED roslib roscpp std_msgs)
 find_package(Boost REQUIRED)
 
-include_directories(include)
+include_directories(include ${catkin_INCLUDE_DIRS})
 
 catkin_package(
   DEPENDS roslib roscpp
@@ -19,6 +19,6 @@ install(DIRECTORY include/${PROJECT_NAME}/
 
 
 if(CATKIN_ENABLE_TESTING)
-	catkin_add_gtest(test_trigger_matcher test/test_trigger_matcher.cpp)
-	target_link_libraries(test_trigger_matcher ${catkin_LIBRARIES})
+        catkin_add_gtest(test_trigger_matcher test/test_trigger_matcher.cpp)
+        target_link_libraries(test_trigger_matcher ${catkin_LIBRARIES})
 endif()
